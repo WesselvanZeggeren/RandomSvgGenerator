@@ -1,0 +1,116 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>RSG</title>
+    <script type="text/javascript" src="script.js"></script>
+    <link rel="stylesheet" href="style.css" type="text/css">
+</head>
+<body>
+<main>
+    <h1 id="title">GENERATE SVG FROM 1*1 TO 512*512 WITH ALL COLOURS AND EVERY SHAPE</h1>
+    <p>
+        Don't forget that the svg size increases exponentially!
+        Making a 512*512 is possible but generating can take a long time and the svg's code will be huge!
+        PS: the styling is done ugly af.
+    </p>
+    <br>
+    <div id="size">
+        <h3>CONFIGURE THE SVG</h3>
+        <label class="width">SVG Sizes</label>
+        <label></label>
+        <br>
+        <div id="sizeConfiguration">
+            <input class="sizeInput" id="vsgx" type="number" placeholder="*SVG X"/>
+            <input class="sizeInput" id="svgy" type="number" placeholder="*SVG Y"/>
+            <input class="sizeInput rectInput" id="x" type="number" placeholder="W/SW">
+            <input class="sizeInput rectInput" id="y" type="number" placeholder="H"><br>
+            <input class="sizeInput" id="cx" type="number" placeholder="CX">
+            <input class="sizeInput" id="cy" type="number" placeholder="CY">
+            <input class="sizeInput" id="rrx" type="number" placeholder="R/RX">
+            <input class="sizeInput" id="ry" type="number" placeholder="RY"><br>
+            <input class="sizeInput" id="x1" type="number" placeholder="X1">
+            <input class="sizeInput" id="y1" type="number" placeholder="Y1">
+            <input class="sizeInput" id="x2" type="number" placeholder="X2">
+            <input class="sizeInput" id="y2" type="number" placeholder="Y2">
+        </div>
+        <div id="polygonConfiguration">
+            <div class="checkboxDiv">
+                <label class="checkboxLabel">Rect:<br>W-H~RX~RY</label>
+                <input class="checkbox" id="rectCheckbox" checked type="checkbox">
+            </div>
+            <div class="checkboxDiv">
+                <label class="checkboxLabel">Circle:<br>CX-CY-R</label>
+                <input class="checkbox" id="circleCheckbox" type="checkbox">
+            </div>
+            <div class="checkboxDiv">
+                <label class="checkboxLabel">Ellipse:<br>CX-CY-RX-RY</label>
+                <input class="checkbox" id="ellipseCheckbox" type="checkbox">
+            </div>
+            <div class="checkboxDiv">
+                <label class="checkboxLabel">Line:<br>X1-Y1-X2-Y2~SW</label>
+                <input class="checkbox" id="lineCheckbox" type="checkbox">
+            </div>
+            <div class="checkboxDiv">
+                <label class="checkboxLabel">Polyline:<br>Points~SW</label>
+                <input class="checkbox" id="polylineCheckbox" type="checkbox">
+            </div>
+            <div class="checkboxDiv">
+                <label class="checkboxLabel">Polygon:<br>Points~SW</label>
+                <input class="checkbox" id="polygonCheckbox" type="checkbox">
+            </div>
+            <br>
+            <textarea id="pointCollection" placeholder="Points"></textarea>
+            <button id="getPoint">GENERATE RANDOM POINTS WITH W H</button>
+            <br>
+            <input class="pointAmount" type="number" placeholder="Generate 1/128 (x2)">
+        </div>
+    </div>
+    <br>
+    <div id="colour">
+        <h3>GENERATE AN SVG WITH COLOUR</h3>
+        <label class="high">The highest values</label>
+        <label class="low"> The lowest values</label>
+        <br>
+        <input class="colourInput" id="redLeft" type="number" placeholder="Red 0/255"/>
+        <input class="colourInput" id="greenLeft" type="number" placeholder="Green 0/255"/>
+        <input class="colourInput" id="blueLeft" type="number" placeholder="Blue 0/255"/>
+        <button id="submitColour">GENERATE SVG</button>
+        <input class="colourInput" id="redRight" type="number" placeholder="Red 0/255"/>
+        <input class="colourInput" id="greenRight" type="number" placeholder="Green 0/255"/>
+        <input class="colourInput" id="blueRight" type="number" placeholder="Red 0/255"/>
+    </div>
+    <br>
+    <div id="grey">
+        <h3>GENERATE AN SVG IN GREY</h3>
+        <label class="high">The highest values</label>
+        <label class="low"> The lowest values</label>
+        <br>
+        <input class="greyInput" id="greyLeft" type="number" placeholder="All colours 0/255">
+        <button id="submitGrey">GENERATE SVG</button>
+        <input class="greyInput" id="greyRight" type="number" placeholder="All colours 0/255">
+    </div>
+    <br>
+    <div id="hex">
+        <h3>GENERATE AN SVG WITH SPECIFIC HEX CODES</h3>
+        <label class="hex">Your hex collection</label>
+        <label></label>
+        <br>
+        <textarea id="hexCollection" placeholder="#ff2020:#20ff20:#2020ff:"></textarea>
+        <div id="hexButtonContainer">
+            <button id="submitHex">GENERATE SVG</button>
+            <button id="getHexColour">RANDOM HEX COLOUR</button>
+            <button id="getHexGrey">RANDOM HEX GREY</button>
+            <input class="hexAmount" type="number" placeholder="Generate 1/128">
+            <br>
+            <textarea id="hexResult" disabled></textarea>
+            <button id="addToCollection">ADD RESULT TO COLLECTION</button>
+            <button id="replaceCollection">REPLACE COLLECTION</button>
+        </div>
+    </div>
+    <br>
+    <h3 id="svgH3">THE SVG WILL DISPLAY BELOW:</h3>
+    <div id="sgvDump">
+    </div>
+</main>
+</body>
+</html>

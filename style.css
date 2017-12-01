@@ -1,0 +1,163 @@
+* {
+    font-family: monospace;
+}
+
+body, label {
+    text-align: center;
+}
+
+button:hover {
+    cursor: pointer;
+}
+
+input, textarea {
+    padding-left: 3px;
+}
+
+p {
+    margin-top: -10px;
+    font-size: 10px;
+}
+
+h3 {
+    margin-top: -7px !important;
+    margin-bottom: -10px !important;
+}
+
+svg {
+    margin-top: 16px;
+    width: 100%;
+    transition: 1s all ease-in;
+}
+
+#submitColour, #submitGrey, #blueLeft, #greyLeft, #hexCollection, #y, #ry, #y2 {
+    margin-right: 20px;
+}
+
+#hexButtonContainer, #sizeConfiguration, #polygonConfiguration, .checkboxDiv {
+    display: inline-block;
+}
+
+.checkboxDiv {
+    border: 1px solid darkgrey;
+    transform: translateY(2px);
+}
+
+.checkboxLabel {
+    text-align: left;
+    display: inline-block;
+    padding-top: 5px;
+    transform: translate(3px, -3px);
+}
+
+#hexButtonContainer {
+    transform: translateY(-1px);
+}
+
+#replaceCollection {
+    width: 90px;
+    transform: translateY(-20px);
+}
+
+#sizeConfiguration {
+    margin-left: 6px;
+    transform: translateY(-7px);
+}
+
+#pointCollection {
+    margin-top: -25px;
+    transform: translateY(34px);
+    height: 49px;
+    width: 300px;
+}
+
+#addToCollection {
+    width: 112px;
+    transform: translateY(-20px);
+}
+
+#hexCollection {
+    transform: translateX(-1px);
+    height: 63px;
+}
+
+#hexResult {
+    width: 333px;
+    margin-top: 7px;
+    transform: translateX(1px);
+}
+
+#getPoint, .pointAmount, .sizeInput {
+    margin-top: 7px;
+}
+
+.pointAmount {
+    transform: translateX(150px);
+    width: 243px;
+}
+
+.colourInput {
+    width: 135.50px;
+}
+
+.sizeInput {
+    width: 99.75px;
+}
+
+.greyInput, #hexCollection {
+    width: 420px;
+}
+
+.hexAmount {
+    width: 157px;
+    margin-right: -8px;
+}
+
+#svgH3 {
+    margin-top: -26px !important;
+}
+
+.width {
+    margin-right: 550px;
+}
+
+.high {
+    margin-right: 416px;
+}
+
+.hex {
+    margin-right: 550px;
+}
+
+#polygonConfiguration {
+    transform: translateX(1px);
+}
+
+#rectCheckbox {
+    margin-right: -18px;
+    transform: translate(-35px, -15px);
+}
+
+#ellipseCheckbox {
+    margin-right: -18px;
+    transform: translate(-27px, -15px);
+}
+
+#lineCheckbox {
+    margin-right: -18px;
+    transform: translate(-71px, -15px);
+}
+
+#circleCheckbox, #polylineCheckbox {
+    margin-right: -2px;
+    transform: translate(-6px, -15px);
+}
+
+#polygonCheckbox {
+    margin-right: -9px;
+    transform: translate(-13px, -15px);
+}
+
+#submitColour, #submitGrey {
+    transform: translateX(1px);
+}
