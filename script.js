@@ -140,7 +140,7 @@ function generateSVG(colours, size, grey, hex, type) {
             if (type === "rect" && size[6]) element += 'rx="' + size[6] + '" ';
             if (type === "rect" && size[7]) element += 'ry="' + size[7] + '" ';
             if (size[2] && type === "line" || size[2] && type === "polyline" || size[2] && type === "polygon") {
-                element += 'stroke-width="';
+                element += 'stroke-width="' + size[2] + '" ';
             }
             if (type === "line" || type === "polyline") {
                 element += 'stroke="' + randomColour + '" fill="transparent"';
