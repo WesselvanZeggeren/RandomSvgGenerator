@@ -139,7 +139,7 @@ function generateSVG(colours, size, grey, hex, type) {
             }
             if (type === "rect" && size[6]) element += 'rx="' + size[6] + '" ';
             if (type === "rect" && size[7]) element += 'ry="' + size[7] + '" ';
-            if (size[2] && type === "line" || size[2] && type === "polyline" || size[2] && type === "polygon") {
+            if (type === "line" || type === "polyline" || size[2] && type === "polygon") {
                 element += 'stroke-width="' + size[2] + '" stroke="' + randomColour + '" ';
             }
             if (type === "line" || type === "polyline") {
@@ -336,10 +336,12 @@ function validateData(type, colours, size, amount, element) {
         if (!size[4] || !size[5] || !size[6] || !size[7] || size[4] < 1 || size[4] > 512 || size[5] < 1
             || size[5] > 512 || size[6] < 1 || size[6] > 512 || size[7] < 1 || size[7] > 512) return false;
     } else if (element === "line") {
-        if (!size[8] || !size[9] || !size[10] || !size[11] || size[8] < 1 || size[8] > 512 || size[9] < 1
-            || size[9] > 512 || size[10] < 1 || size[10] > 512 || size[11] < 1 || size[11] > 512) return false;
+        if (!size[2] || !size[8] || !size[9] || !size[10] || !size[11] || size[2] < 1 || size[2] > 512
+            || size[8] < 1 || size[8] > 512 || size[9] < 1 || size[9] > 512 || size[10] < 1 || size[10] > 512
+            || size[11] < 1 || size[11] > 512) return false;
     } else if (element === "polyline") {
-        if (document.getElementById("pointCollection").value.split(" ") < 2) return false;
+        if (document.getElementById("pointCollection").value.split(" ") < 2
+            || !size[2] || size[2] < 1 || size[2] > 512) return false;
     } else if (element === "polygon") {
         if (document.getElementById("pointCollection").value.split(" ") < 2) return false;
     }
