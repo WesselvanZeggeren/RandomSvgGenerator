@@ -148,7 +148,6 @@ function generateSVG(colours, size, grey, hex, type) {
                 element += 'fill="' + randomColour + '" ';
             }
             element += '></' + type + '>';
-            console.log(points);
             points = preparePoints(points, "x");
         }
         points = preparePoints(points, "y");
@@ -287,6 +286,7 @@ function prepareHigh(size) {
 /**
  * prepares the points array every time it loops for correct placement
  * @param points
+ * @param xy
  * @returns {*}
  */
 function preparePoints(points, xy) {
