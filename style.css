@@ -34,7 +34,7 @@ svg {
     transition: 1s all ease-in;
 }
 
-#submitColour, #submitGrey, #blueLeft, #greyLeft, #hexCollection, #y, #ry, #y2 {
+#submitColour, #submitGrey, #blueLeft, #greyLeft, #hexCollection, #y, #ry, #y2, .strokeCheckboxDiv {
     margin-right: 20px;
 }
 
@@ -65,14 +65,13 @@ svg {
 
 #sizeConfiguration {
     margin-left: 6px;
-    transform: translateY(-7px);
 }
 
 #pointCollection {
     margin-top: -25px;
     transform: translateY(34px);
     height: 49px;
-    width: 300px;
+    width: 241px;
 }
 
 #addToCollection {
@@ -95,9 +94,14 @@ svg {
     margin-top: 7px;
 }
 
+.backgroundCheckboxDiv {
+    transform: translate(120px, 2px);
+}
+
 .pointAmount {
-    transform: translateX(150px);
-    width: 243px;
+    transform: translateX(121px);
+    width: 139px;
+    margin-right: 1px;
 }
 
 .colourInput {
@@ -133,8 +137,17 @@ svg {
     margin-right: 570px;
 }
 
+#sw {
+    width: 223px;
+}
+
+.fillCheckboxDiv, .strokeCheckboxDiv, .backgroundCheckboxDiv {
+    padding: 1px;
+    padding-left: 2px;
+}
+
 #polygonConfiguration {
-    transform: translateX(1px);
+    transform: translate(1px, -6px);
 }
 
 #rectCheckbox {
@@ -144,22 +157,22 @@ svg {
 
 #ellipseCheckbox {
     margin-right: -18px;
-    transform: translate(-27px, -15px);
+    transform: translate(-28px, -15px);
 }
 
 #lineCheckbox {
     margin-right: -18px;
-    transform: translate(-71px, -15px);
+    transform: translate(-70px, -15px);
 }
 
-#circleCheckbox, #polylineCheckbox {
+#circleCheckbox, #polylineCheckbox, #polygonCheckbox {
     margin-right: -2px;
     transform: translate(-6px, -15px);
 }
 
-#polygonCheckbox {
-    margin-right: -9px;
-    transform: translate(-13px, -15px);
+#fillCheckbox, #strokeCheckbox, #backgroundCheckbox {
+    margin-right: -2px;
+    transform: translateX(-6px);
 }
 
 #submitColour, #submitGrey {

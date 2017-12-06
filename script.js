@@ -10,7 +10,7 @@ window.onload = function () {
         var colours = getData("colourInput");
         var size = getData("sizeInput");
         var type = getType(getData("checkbox"));
-        if (validateData("colour", colours, size, "", type)) {
+        if (validateData("colour", colours, size, "", type[0])) {
             generateSVG(colours, size, false, false, type);
         }
     };
@@ -22,7 +22,7 @@ window.onload = function () {
         var colours = getData("greyInput");
         var size = getData("sizeInput");
         var type = getType(getData("checkbox"));
-        if (validateData("grey", colours, size, "", type)) {
+        if (validateData("grey", colours, size, "", type[0])) {
             generateSVG(colours, size, true, false, type);
         }
     };
@@ -34,7 +34,7 @@ window.onload = function () {
         var colours = document.getElementById("hexCollection").value;
         var size = getData("sizeInput");
         var type = getType(getData("checkbox"));
-        if (validateData("hex", colours, size, "", type)) {
+        if (validateData("hex", colours, size, "", type[0])) {
             generateSVG(colours, size, false, true, type);
         }
     };
@@ -68,6 +68,7 @@ window.onload = function () {
         var size = getData("rectInput");
         var amount = getData("pointAmount");
         if (validateData("points", "", size, amount, "")) {
+            console.log("");
             generatePoint(size, amount[0]);
         }
     };
@@ -89,81 +90,97 @@ window.onload = function () {
     };
 
     var elements = document.getElementsByClassName("checkbox");
+    var fill = false;
     for (var i = 0; i < elements.length; i++) {
         elements[i].onclick = function (e) {
-            for (var a = 0; a < elements.length; a++) {
-                elements[a].checked = false;
+            if (e.target.id !== "fillCheckbox" && e.target.id !== "strokeCheckbox") {
+                for (var a = 2; a < (elements.length); a++) {
+                    elements[a].checked = false;
+                }
+                e.target.checked = true;
             }
-            e.target.checked = true;
+            if (e.target.id === "lineCheckbox" || e.target.id === "polyline" ||
+                document.getElementById("lineCheckbox").checked || document.getElementById("polylineCheckbox").checked) {
+                if (elements[0].checked) fill = true;
+                elements[0].checked = false;
+                elements[1].checked = true;
+            } else if (e.target.id === "fillCheckbox" || e.target.id === "strokeCheckbox") {
+                elements[0].checked = false;
+                elements[1].checked = false;
+                e.target.checked = true;
+            } else if (fill) {
+                elements[0].checked = true;
+                elements[1].checked = false;
+                fill = false;
+            }
         }
     }
-};
+}
+;
 
 /**
- * Generates the svg with data places svg in html
+ * Generates the svg with data, places svg in html
  * @param colours
  * @param size
  * @param grey
  * @param hex
+ * @param type
  */
 function generateSVG(colours, size, grey, hex, type) {
+    var sw = 0;
     var element = "";
     var points = getPoints();
-    var colourArray = prepareColourHexArray(colours, hex);
     var high = prepareHigh(size);
+    var colourArray = prepareColourHexArray(colours, hex);
+    if (!type[1]) sw = size[12];
     for (var i = 0; i < size[1]; i++) {
         for (var a = 0; a < size[0]; a++) {
-            if (grey) {
-                var randomColour = generateRandomGrey(colours);
-            } else if (hex) {
-                var randomColour = generateRandomColourWithHexArray(colourArray);
-            } else {
-                var randomColour = generateRandomColour(colours);
-            }
-            element += '<' + type + ' ';
-            if (type === "circle" || type === "ellipse") {
-                element += 'cx="' + ((a * size[4]) + (size[4] / 2)) + '" cy="' + ((i * size[5]) + (size[5] / 2)) + '" ';
-                if (type === "circle") {
+            element += '<' + type[0] + ' ';
+            if (type[0] === "circle" || type[0] === "ellipse") {
+                element += 'cx="' + ((a * size[4]) + (size[4] / 2) + (a * sw) + (sw / 2)) + '" ';
+                element += 'cy="' + ((i * size[5]) + (size[5] / 2) + (i * sw) + (sw / 2)) + '" ';
+                if (type[0] === "circle") {
                     element += 'r="' + size[6] + '" ';
                 } else {
                     element += 'rx="' + size[6] + '" ry="' + size[7] + '" ';
                 }
-            } else if (type === "line") {
+            } else if (type[0] === "line") {
                 element += 'x1="' + ((a * high[0]) + size[8]) + '" x2="' + ((a * high[0]) + size[10]) + '" ';
                 element += 'y1="' + ((i * high[1]) + size[9]) + '" y2="' + ((i * high[1]) + size[11]) + '" ';
-            } else if (type === "polyline" || type === "polygon") {
+            } else if (type[0] === "polyline" || type[0] === "polygon") {
                 element += 'points="' + points[2] + '" ';
             } else {
-                element += 'x="' + a * size[2] + '" y="' + i * size[3] + '" ';
+                element += 'x="' + ((a * (size[2] + sw)) + (sw / 2)) + '" ';
+                element += 'y="' + ((i * (size[3] + sw)) + (sw / 2)) + '" ';
                 element += 'width="' + size[2] + '" height="' + size[3] + '" ';
             }
-            if (type === "rect" && size[6]) element += 'rx="' + size[6] + '" ';
-            if (type === "rect" && size[7]) element += 'ry="' + size[7] + '" ';
-            if (type === "line" || type === "polyline" || size[2] && type === "polygon") {
-                element += 'stroke-width="' + size[2] + '" stroke="' + randomColour + '" ';
-            }
-            if (type === "line" || type === "polyline") {
-                element += 'fill="transparent" ';
+            if (type[0] === "rect" && size[6]) element += 'rx="' + size[6] + '" ';
+            if (type[0] === "rect" && size[7]) element += 'ry="' + size[7] + '" ';
+            if (!type[1]) {
+                element += 'stroke-width="' + size[12] + '" stroke="' + getColour(grey, colours, hex, colourArray) + '" fill="transparent" ';
             } else {
-                element += 'fill="' + randomColour + '" ';
+                element += 'fill="' + getColour(grey, colours, hex, colourArray) + '" ';
             }
-            element += '></' + type + '>';
+            element += '></' + type[0] + '>';
             points = preparePoints(points, "x");
         }
         points = preparePoints(points, "y");
     }
     var SVG = '<svg width="100%" heigth="100%" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ';
-    if (type === "circle" || type === "ellipse") {
-        SVG += size[0] * size[4] + " " + size[1] * size[5];
-    } else if (type === "line") {
-        SVG += size[0] * high[0] + " " + size[1] * high[1];
-    } else if (type === "polyline" || type === "polygon") {
+    if (type[0] === "circle" || type[0] === "ellipse") {
+        SVG += size[0] * (size[4] + sw) + " " + size[1] * (size[5] + sw);
+    } else if (type[0] === "line") {
+        SVG += size[0] * (high[0] + sw) + " " + size[1] * (high[1] + sw);
+    } else if (type[0] === "polyline" || type[0] === "polygon") {
         SVG += size[0] * points[3] + " " + size[1] * points[4];
     } else {
-        SVG += size[0] * size[2] + " " + size[1] * size[3];
+        SVG += size[0] * (size[2] + sw) + " " + size[1] * (size[3] + sw);
     }
     SVG += '" >' + element + '</svg>';
     document.getElementById("sgvDump").innerHTML = SVG;
+    if (document.getElementById("backgroundCheckbox").checked) {
+        document.getElementsByTagName("svg")[0].style.backgroundColor = getColour(grey, colours, hex, colourArray);
+    }
 }
 
 /**
@@ -336,14 +353,18 @@ function validateData(type, colours, size, amount, element) {
         if (!size[4] || !size[5] || !size[6] || !size[7] || size[4] < 1 || size[4] > 512 || size[5] < 1
             || size[5] > 512 || size[6] < 1 || size[6] > 512 || size[7] < 1 || size[7] > 512) return false;
     } else if (element === "line") {
-        if (!size[2] || !size[8] || !size[9] || !size[10] || !size[11] || size[2] < 1 || size[2] > 512
-            || size[8] < 0 || size[8] > 512 || size[9] < 0 || size[9] > 512 || size[10] < 0 || size[10] > 512
-            || size[11] < 0 || size[11] > 512) return false;
+        if (!size[8] || !size[9] || !size[10] || !size[11] || !size[12] || size[8] < 0 || size[8] > 512 || size[9] < 0
+            || size[9] > 512 || size[10] < 0 || size[10] > 512 || size[11] < 0 || size[11] > 512 || size[12] < 1
+            || size[12] > 512) return false;
     } else if (element === "polyline") {
         if (document.getElementById("pointCollection").value.split(" ") < 2
-            || !size[2] || size[2] < 1 || size[2] > 512) return false;
+            || !size[12] || size[2] < 1 || size[12] > 512) return false;
     } else if (element === "polygon") {
         if (document.getElementById("pointCollection").value.split(" ") < 2) return false;
+    }
+    if (document.getElementById("strokeCheckbox").checked &&
+        type !== "points" && type !== "hexColour" && type !== "hexGrey") {
+        if (!size[12] || size[12] < 1 || size[12] > 512) return false;
     }
     return true;
 }
@@ -354,18 +375,20 @@ function validateData(type, colours, size, amount, element) {
  * @returns {*}
  */
 function getType(array) {
-    if (array[0]) {
-        return "rect";
-    } else if (array[1]) {
-        return "circle";
-    } else if (array[2]) {
-        return "ellipse";
+    var fill = true;
+    if (array[1]) fill = false;
+    if (array[2]) {
+        return ["rect", fill];
     } else if (array[3]) {
-        return "line";
+        return ["circle", fill];
     } else if (array[4]) {
-        return "polyline";
+        return ["ellipse", fill];
     } else if (array[5]) {
-        return "polygon";
+        return ["line", fill];
+    } else if (array[6]) {
+        return ["polyline", fill];
+    } else if (array[7]) {
+        return ["polygon", fill];
     }
     return false;
 }
@@ -391,6 +414,24 @@ function getPoints() {
         a++;
     }
     return points;
+}
+
+/**
+ * Gets the correct random colour
+ * @param grey
+ * @param colours
+ * @param hex
+ * @param colourArray
+ * @returns {string}
+ */
+function getColour(grey, colours, hex, colourArray) {
+    if (grey) {
+        return generateRandomGrey(colours);
+    } else if (hex) {
+        return generateRandomColourWithHexArray(colourArray);
+    } else {
+        return generateRandomColour(colours);
+    }
 }
 
 /**

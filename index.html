@@ -22,8 +22,8 @@
         <div id="sizeConfiguration">
             <input class="sizeInput" id="vsgx" type="number" placeholder="*SVG X"/>
             <input class="sizeInput" id="svgy" type="number" placeholder="*SVG Y"/>
-            <input class="sizeInput rectInput" id="x" type="number" placeholder="W/SW">
-            <input class="sizeInput rectInput" id="y" type="number" placeholder="H"><br>
+            <input class="sizeInput rectInput" id="x" type="number" placeholder="Width (W)">
+            <input class="sizeInput rectInput" id="y" type="number" placeholder="Height (H)"><br>
             <input class="sizeInput" id="cx" type="number" placeholder="CX">
             <input class="sizeInput" id="cy" type="number" placeholder="CY">
             <input class="sizeInput" id="rrx" type="number" placeholder="R/RX">
@@ -31,7 +31,16 @@
             <input class="sizeInput" id="x1" type="number" placeholder="X1">
             <input class="sizeInput" id="y1" type="number" placeholder="Y1">
             <input class="sizeInput" id="x2" type="number" placeholder="X2">
-            <input class="sizeInput" id="y2" type="number" placeholder="Y2">
+            <input class="sizeInput" id="y2" type="number" placeholder="Y2"><br>
+            <input class="sizeInput" id="sw" type="number" placeholder="Stroke-Width (SW)">
+            <div class="checkboxDiv fillCheckboxDiv">
+                <label class="checkboxLabel">Fill:</label>
+                <input class="checkbox" id="fillCheckbox" checked type="checkbox">
+            </div>
+            <div class="checkboxDiv strokeCheckboxDiv">
+                <label class="checkboxLabel">Stroke-Width:</label>
+                <input class="checkbox" id="strokeCheckbox" type="checkbox">
+            </div>
         </div>
         <div id="polygonConfiguration">
             <div class="checkboxDiv">
@@ -47,22 +56,26 @@
                 <input class="checkbox" id="ellipseCheckbox" type="checkbox">
             </div>
             <div class="checkboxDiv">
-                <label class="checkboxLabel">Line:<br>SW-X1-Y1-X2-Y2</label>
+                <label class="checkboxLabel">Line:<br>X1-Y1-X2-Y2-SW</label>
                 <input class="checkbox" id="lineCheckbox" type="checkbox">
             </div>
             <div class="checkboxDiv">
-                <label class="checkboxLabel">Polyline:<br>SW-Points</label>
+                <label class="checkboxLabel">Polyline:<br>Points-SW</label>
                 <input class="checkbox" id="polylineCheckbox" type="checkbox">
             </div>
             <div class="checkboxDiv">
-                <label class="checkboxLabel">Polygon:<br>Points~SW</label>
+                <label class="checkboxLabel">Polygon:<br>Points</label>
                 <input class="checkbox" id="polygonCheckbox" type="checkbox">
             </div>
             <br>
             <textarea id="pointCollection" placeholder="Points"></textarea>
-            <button id="getPoint">GENERATE RANDOM POINTS WITH W H</button>
+            <button id="getPoint">GENERATE RANDOM POINTS (Width - Height)</button>
             <br>
-            <input class="pointAmount" type="number" placeholder="Generate 1/128 (x2)">
+            <input class="pointAmount" type="number" placeholder="Generate 1/128">
+            <div class="checkboxDiv backgroundCheckboxDiv">
+                <label class="checkboxLabel">Background-Colour:</label>
+                <input id="backgroundCheckbox" type="checkbox">
+            </div>
         </div>
     </div>
     <br>
