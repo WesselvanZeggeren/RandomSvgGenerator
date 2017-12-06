@@ -122,7 +122,7 @@ function generateSVG(colours, size, grey, hex, type) {
             }
             element += '<' + type + ' ';
             if (type === "circle" || type === "ellipse") {
-                element += 'cx="' + ((i * size[4]) + (size[4] / 2)) + '" cy="' + ((a * size[5]) + (size[5] / 2)) + '" ';
+                element += 'cx="' + ((a * size[4]) + (size[4] / 2)) + '" cy="' + ((i * size[5]) + (size[5] / 2)) + '" ';
                 if (type === "circle") {
                     element += 'r="' + size[6] + '" ';
                 } else {
@@ -134,7 +134,7 @@ function generateSVG(colours, size, grey, hex, type) {
             } else if (type === "polyline" || type === "polygon") {
                 element += 'points="' + points[2] + '" ';
             } else {
-                element += 'x="' + i * size[2] + '" y="' + a * size[3] + '" ';
+                element += 'x="' + a * size[2] + '" y="' + i * size[3] + '" ';
                 element += 'width="' + size[2] + '" height="' + size[3] + '" ';
             }
             if (type === "rect" && size[6]) element += 'rx="' + size[6] + '" ';
@@ -152,7 +152,7 @@ function generateSVG(colours, size, grey, hex, type) {
         }
         points = preparePoints(points, "y");
     }
-    var SVG = '<svg width="100%" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ';
+    var SVG = '<svg width="100%" heigth="100%" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ';
     if (type === "circle" || type === "ellipse") {
         SVG += size[0] * size[4] + " " + size[1] * size[5];
     } else if (type === "line") {
@@ -337,8 +337,8 @@ function validateData(type, colours, size, amount, element) {
             || size[5] > 512 || size[6] < 1 || size[6] > 512 || size[7] < 1 || size[7] > 512) return false;
     } else if (element === "line") {
         if (!size[2] || !size[8] || !size[9] || !size[10] || !size[11] || size[2] < 1 || size[2] > 512
-            || size[8] < 1 || size[8] > 512 || size[9] < 1 || size[9] > 512 || size[10] < 1 || size[10] > 512
-            || size[11] < 1 || size[11] > 512) return false;
+            || size[8] < 0 || size[8] > 512 || size[9] < 0 || size[9] > 512 || size[10] < 0 || size[10] > 512
+            || size[11] < 0 || size[11] > 512) return false;
     } else if (element === "polyline") {
         if (document.getElementById("pointCollection").value.split(" ") < 2
             || !size[2] || size[2] < 1 || size[2] > 512) return false;

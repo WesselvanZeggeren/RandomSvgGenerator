@@ -1,3 +1,8 @@
+rect:hover, circle:hover, ellipse:hover, line:hover, polyline:hover, polygon:hover {
+    border: 5px solid #000000;
+    border-radius: 2px;
+}
+
 * {
     font-family: monospace;
 }
@@ -26,7 +31,6 @@ h3 {
 
 svg {
     margin-top: 16px;
-    width: 100%;
     transition: 1s all ease-in;
 }
 
