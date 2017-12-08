@@ -31,11 +31,10 @@ window.onload = function () {
      * On click: get data, check data, generate svg with svg
      */
     document.getElementById("submitHex").onclick = function () {
-        var colours = document.getElementById("hexCollection").value;
         var size = getData("sizeInput");
         var type = getType(getData("checkbox"));
-        if (validateData("hex", colours, size, "", type[0])) {
-            generateSVG(colours, size, false, true, type);
+        if (validateData("hex", "", size, "", type[0])) {
+            generateSVG("", size, false, true, type);
         }
     };
 
@@ -273,18 +272,14 @@ function generateRandomPoint(size) {
 
 /**
  * Prepares the colourArray
- * @param colours
- * @param hex
  * @returns {Array}
  */
-function prepareColourHexArray(colours, hex) {
-    if (hex) {
-        var colourArray = colours.split(':');
-        if (colourArray[colourArray.length - 1] === "") {
-            colourArray.pop();
-        }
-        return colourArray;
+function prepareColourHexArray() {
+    var colourArray = document.getElementById("hexCollection").value.split(':');
+    if (colourArray[colourArray.length - 1] === "") {
+        colourArray.pop();
     }
+    return colourArray;
 }
 
 /**
