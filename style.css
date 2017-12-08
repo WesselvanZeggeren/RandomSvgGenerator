@@ -1,14 +1,19 @@
-rect:hover, circle:hover, ellipse:hover, line:hover, polyline:hover, polygon:hover {
-    border: 5px solid #000000;
-    border-radius: 2px;
-}
-
 * {
     font-family: monospace;
 }
 
 body, label {
     text-align: center;
+}
+
+fieldset {
+    padding-left: 35px;
+    padding-right: 35px;
+    border-bottom: none;
+}
+
+legend {
+    font-size: 30px;
 }
 
 button:hover {
@@ -38,7 +43,7 @@ svg {
     margin-right: 20px;
 }
 
-#hexButtonContainer, #sizeConfiguration, #polygonConfiguration, .checkboxDiv {
+fieldset, #hexButtonContainer, #sizeConfiguration, #polygonConfiguration, .checkboxDiv {
     display: inline-block;
 }
 
