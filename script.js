@@ -99,8 +99,7 @@ window.onload = function () {
                 }
                 e.target.checked = true;
             }
-            if (e.target.id === "lineCheckbox" || e.target.id === "polyline" ||
-                document.getElementById("lineCheckbox").checked || document.getElementById("polylineCheckbox").checked) {
+            if (document.getElementById("lineCheckbox").checked || document.getElementById("polylineCheckbox").checked) {
                 if (elements[0].checked) fill = true;
                 elements[0].checked = false;
                 elements[1].checked = true;
