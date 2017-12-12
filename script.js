@@ -129,7 +129,7 @@ function generateSVG(colours, size, grey, hex, type) {
     var element = "";
     var points = getPoints();
     var high = prepareHigh(size);
-    var colourArray = prepareColourHexArray(colours, hex);
+    var colourArray = prepareColourHexArray();
     if (!type[1]) sw = size[12];
     for (var i = 0; i < size[1]; i++) {
         for (var a = 0; a < size[0]; a++) {
