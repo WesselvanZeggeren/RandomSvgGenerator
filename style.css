@@ -70,6 +70,7 @@ fieldset, #hexButtonContainer, #sizeConfiguration, #polygonConfiguration, .check
 
 #sizeConfiguration {
     margin-left: 6px;
+    margin-top: -6px;
 }
 
 #pointCollection {
@@ -85,12 +86,11 @@ fieldset, #hexButtonContainer, #sizeConfiguration, #polygonConfiguration, .check
 }
 
 #hexCollection {
-    transform: translateX(-1px);
     height: 63px;
 }
 
 #hexResult {
-    width: 333px;
+    width: 335px;
     margin-top: 7px;
     transform: translateX(1px);
 }
@@ -110,28 +110,33 @@ fieldset, #hexButtonContainer, #sizeConfiguration, #polygonConfiguration, .check
 }
 
 .colourInput {
-    width: 135.50px;
+    width: 135.5px;
 }
 
 .sizeInput {
-    width: 99.75px;
+    width: 100px;
 }
 
 .greyInput, #hexCollection {
-    width: 420px;
+    width: 421px;
 }
 
 .hexAmount {
-    width: 157px;
+    width: 159px;
     margin-right: -8px;
 }
 
 #svgH3 {
-    margin-top: -26px !important;
+    margin-top: -6px !important;
 }
 
 .width {
     margin-right: 565px;
+}
+
+#size {
+    transition: margin-bottom 0.5s ease-out;
+    margin-bottom: -190px;
 }
 
 .high {
@@ -142,8 +147,12 @@ fieldset, #hexButtonContainer, #sizeConfiguration, #polygonConfiguration, .check
     margin-right: 570px;
 }
 
+#hex {
+    margin-bottom: -22px;
+}
+
 #sw {
-    width: 223px;
+    width: 224px;
 }
 
 .fillCheckboxDiv, .strokeCheckboxDiv, .backgroundCheckboxDiv {
@@ -152,21 +161,23 @@ fieldset, #hexButtonContainer, #sizeConfiguration, #polygonConfiguration, .check
 }
 
 #polygonConfiguration {
-    transform: translate(1px, -6px);
+    transform: translate(1px, 16px);
+    margin-top: -20px;
+    margin-bottom: 12px;
 }
 
 #rectCheckbox {
-    margin-right: -18px;
+    margin-right: -16px;
     transform: translate(-35px, -15px);
 }
 
 #ellipseCheckbox {
-    margin-right: -18px;
+    margin-right: -17px;
     transform: translate(-28px, -15px);
 }
 
 #lineCheckbox {
-    margin-right: -18px;
+    margin-right: -16px;
     transform: translate(-70px, -15px);
 }
 
@@ -180,6 +191,20 @@ fieldset, #hexButtonContainer, #sizeConfiguration, #polygonConfiguration, .check
     transform: translateX(-6px);
 }
 
+.checkboxDiv1 {
+    transform: translate(1px, 2px);
+}
+
+.checkboxDiv-1 {
+    transform: translate(-1px, 2px);
+}
+
 #submitColour, #submitGrey {
     transform: translateX(1px);
+}
+
+#openAdvancedSettings {
+    width: 421px;
+    margin-bottom: 5px;
+    transform: translateX(61px);
 }

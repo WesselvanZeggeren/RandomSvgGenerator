@@ -25,58 +25,81 @@
             <input class="sizeInput" id="svgy" type="number" placeholder="*SVG Y"/>
             <input class="sizeInput rectInput" id="x" type="number" placeholder="Width (W)">
             <input class="sizeInput rectInput" id="y" type="number" placeholder="Height (H)"><br>
-            <input class="sizeInput" id="cx" type="number" placeholder="CX">
-            <input class="sizeInput" id="cy" type="number" placeholder="CY">
-            <input class="sizeInput" id="rrx" type="number" placeholder="R/RX">
-            <input class="sizeInput" id="ry" type="number" placeholder="RY"><br>
-            <input class="sizeInput" id="x1" type="number" placeholder="X1">
-            <input class="sizeInput" id="y1" type="number" placeholder="Y1">
-            <input class="sizeInput" id="x2" type="number" placeholder="X2">
-            <input class="sizeInput" id="y2" type="number" placeholder="Y2"><br>
-            <input class="sizeInput" id="sw" type="number" placeholder="Stroke-Width (SW)">
-            <div class="checkboxDiv fillCheckboxDiv">
-                <label class="checkboxLabel">Fill:</label>
-                <input class="checkbox" id="fillCheckbox" checked type="checkbox">
-            </div>
-            <div class="checkboxDiv strokeCheckboxDiv">
-                <label class="checkboxLabel">Stroke-Width:</label>
-                <input class="checkbox" id="strokeCheckbox" type="checkbox">
+            <div class="advancedSettings" style="visibility: hidden">
+                <input class="sizeInput" id="cx" type="number" placeholder="CX">
+                <input class="sizeInput" id="cy" type="number" placeholder="CY">
+                <input class="sizeInput" id="rrx" type="number" placeholder="R/RX">
+                <input class="sizeInput" id="ry" type="number" placeholder="RY"><br>
+                <input class="sizeInput" id="x1" type="number" placeholder="X1">
+                <input class="sizeInput" id="y1" type="number" placeholder="Y1">
+                <input class="sizeInput" id="x2" type="number" placeholder="X2">
+                <input class="sizeInput" id="y2" type="number" placeholder="Y2"><br>
+                <input class="sizeInput" id="sw" type="number" placeholder="Stroke-Width (SW)">
+                <div class="checkboxDiv fillCheckboxDiv">
+                    <label class="checkboxLabel">Fill:</label>
+                    <input class="checkbox" id="fillCheckbox" checked type="checkbox">
+                </div>
+                <div class="checkboxDiv strokeCheckboxDiv">
+                    <label class="checkboxLabel">Stroke-Width:</label>
+                    <input class="checkbox" id="strokeCheckbox" type="checkbox">
+                </div>
             </div>
         </div>
         <div id="polygonConfiguration">
-            <div class="checkboxDiv">
-                <label class="checkboxLabel">Rect:<br>W-H~RX~RY</label>
-                <input class="checkbox" id="rectCheckbox" checked type="checkbox">
+            <button id="openAdvancedSettings">Hide/Show advanced Settings</button>
+            <div class="advancedSettings" style="visibility: hidden">
+                <div class="checkboxDiv checkboxDiv1">
+                    <label class="checkboxLabel">Rect:<br>W-H~RX~RY</label>
+                    <input class="checkbox" id="rectCheckbox" checked type="checkbox">
+                </div>
+                <div class="checkboxDiv checkboxDiv1">
+                    <label class="checkboxLabel">Circle:<br>CX-CY-R</label>
+                    <input class="checkbox" id="circleCheckbox" type="checkbox">
+                </div>
+                <div class="checkboxDiv">
+                    <label class="checkboxLabel">Ellipse:<br>CX-CY-RX-RY</label>
+                    <input class="checkbox" id="ellipseCheckbox" type="checkbox">
+                </div>
+                <div class="checkboxDiv">
+                    <label class="checkboxLabel">Line:<br>X1-Y1-X2-Y2-SW</label>
+                    <input class="checkbox" id="lineCheckbox" type="checkbox">
+                </div>
+                <div class="checkboxDiv">
+                    <label class="checkboxLabel">Polyline:<br>Points-SW</label>
+                    <input class="checkbox" id="polylineCheckbox" type="checkbox">
+                </div>
+                <div class="checkboxDiv checkboxDiv-1">
+                    <label class="checkboxLabel">Polygon:<br>Points</label>
+                    <input class="checkbox" id="polygonCheckbox" type="checkbox">
+                </div>
+                <br>
+                <textarea id="pointCollection" placeholder="Points"></textarea>
+                <button id="getPoint">GENERATE RANDOM POINTS (Width - Height)</button>
+                <br>
+                <input class="pointAmount" type="number" placeholder="Generate 1/128">
+                <div class="checkboxDiv backgroundCheckboxDiv">
+                    <label class="checkboxLabel">Background-Colour:</label>
+                    <input id="backgroundCheckbox" type="checkbox">
+                </div>
             </div>
-            <div class="checkboxDiv">
-                <label class="checkboxLabel">Circle:<br>CX-CY-R</label>
-                <input class="checkbox" id="circleCheckbox" type="checkbox">
-            </div>
-            <div class="checkboxDiv">
-                <label class="checkboxLabel">Ellipse:<br>CX-CY-RX-RY</label>
-                <input class="checkbox" id="ellipseCheckbox" type="checkbox">
-            </div>
-            <div class="checkboxDiv">
-                <label class="checkboxLabel">Line:<br>X1-Y1-X2-Y2-SW</label>
-                <input class="checkbox" id="lineCheckbox" type="checkbox">
-            </div>
-            <div class="checkboxDiv">
-                <label class="checkboxLabel">Polyline:<br>Points-SW</label>
-                <input class="checkbox" id="polylineCheckbox" type="checkbox">
-            </div>
-            <div class="checkboxDiv">
-                <label class="checkboxLabel">Polygon:<br>Points</label>
-                <input class="checkbox" id="polygonCheckbox" type="checkbox">
-            </div>
+        </div>
+    </div>
+    <br>
+    <div class="advancedSettings" style="visibility: hidden" id="hex">
+        <h3>GENERATE AN SVG WITH SPECIFIC HEX CODES</h3>
+        <label class="hex">Your hex collection</label>
+        <label></label>
+        <br>
+        <textarea id="hexCollection" placeholder="#ff2020:#20ff20:#2020ff:"></textarea>
+        <div id="hexButtonContainer">
+            <button id="submitHex">GENERATE SVG</button>
+            <button id="getHexColour">RANDOM HEX COLOUR</button>
+            <button id="getHexGrey">RANDOM HEX GREY</button>
+            <input class="hexAmount" type="number" placeholder="Generate 1/128">
             <br>
-            <textarea id="pointCollection" placeholder="Points"></textarea>
-            <button id="getPoint">GENERATE RANDOM POINTS (Width - Height)</button>
-            <br>
-            <input class="pointAmount" type="number" placeholder="Generate 1/128">
-            <div class="checkboxDiv backgroundCheckboxDiv">
-                <label class="checkboxLabel">Background-Colour:</label>
-                <input id="backgroundCheckbox" type="checkbox">
-            </div>
+            <textarea id="hexResult" disabled></textarea>
+            <button id="addToCollection">ADD RESULT TO COLLECTION</button>
+            <button id="replaceCollection">REPLACE COLLECTION</button>
         </div>
     </div>
     <br>
@@ -102,24 +125,6 @@
         <input class="greyInput" id="greyLeft" type="number" placeholder="All colours 0/255">
         <button id="submitGrey">GENERATE SVG</button>
         <input class="greyInput" id="greyRight" type="number" placeholder="All colours 0/255">
-    </div>
-    <br>
-    <div id="hex">
-        <h3>GENERATE AN SVG WITH SPECIFIC HEX CODES</h3>
-        <label class="hex">Your hex collection</label>
-        <label></label>
-        <br>
-        <textarea id="hexCollection" placeholder="#ff2020:#20ff20:#2020ff:"></textarea>
-        <div id="hexButtonContainer">
-            <button id="submitHex">GENERATE SVG</button>
-            <button id="getHexColour">RANDOM HEX COLOUR</button>
-            <button id="getHexGrey">RANDOM HEX GREY</button>
-            <input class="hexAmount" type="number" placeholder="Generate 1/128">
-            <br>
-            <textarea id="hexResult" disabled></textarea>
-            <button id="addToCollection">ADD RESULT TO COLLECTION</button>
-            <button id="replaceCollection">REPLACE COLLECTION</button>
-        </div>
     </div>
     <br>
     <h3 id="svgH3">THE SVG WILL DISPLAY BELOW:</h3>

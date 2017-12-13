@@ -72,6 +72,7 @@ window.onload = function () {
         }
     };
 
+
     /**
      * On click: gets result data and adds it to the collection
      */
@@ -88,6 +89,30 @@ window.onload = function () {
         document.getElementById("hexResult").innerHTML = "";
     };
 
+    /**
+     * On click: hides and shows the advanced settings
+     */
+    document.getElementById("openAdvancedSettings").onclick = function () {
+        var speed = 0;
+        var visibility = "hidden";
+        var settings = document.getElementsByClassName("advancedSettings");
+        document.getElementById("size").style.marginBottom = "-190px";
+        if (settings[0].style.visibility === "hidden") {
+            speed = 500;
+            visibility = "visible";
+            document.getElementById("size").style.marginBottom = "0";
+        }
+        setTimeout(function () {
+            for (var i = 0; i < settings.length; i++) {
+                settings[i].style.visibility = visibility;
+            }
+        }, speed);
+    };
+
+    /**
+     * Loops and sets all the checkbox clicks. On click: checks the correct boxes
+     * @type {NodeList}
+     */
     var elements = document.getElementsByClassName("checkbox");
     var fill = false;
     for (var i = 0; i < elements.length; i++) {
