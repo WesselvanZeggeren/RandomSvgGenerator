@@ -95,7 +95,7 @@ window.onload = function () {
         var speed = 0;
         var visibility = "hidden";
         var settings = document.getElementsByClassName("advancedSettings");
-        document.getElementById("size").style.marginBottom = "-178px";
+        document.getElementById("size").style.marginBottom = "-175px";
         if (settings[0].style.visibility === "hidden") {
             speed = 500;
             visibility = "visible";
