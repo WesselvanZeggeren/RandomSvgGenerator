@@ -39,7 +39,7 @@ svg {
     transition: 1s all ease-in;
 }
 
-#submitColour, #submitGrey, #blueLeft, #greyLeft, #hexCollection, #y, #ry, #y2, .strokeCheckboxDiv {
+#submitColour, #submitGrey, #blueLeft, #greyLeft, #hexCollection, #y, #ry, #y2, #svgy, .strokeCheckboxDiv {
     margin-right: 20px;
 }
 
@@ -69,6 +69,7 @@ fieldset, #hexButtonContainer, #sizeConfiguration, #polygonConfiguration, .check
 }
 
 #sizeConfiguration {
+    transform: translateX(1px);
     margin-left: 6px;
     margin-top: -6px;
 }
@@ -136,7 +137,7 @@ fieldset, #hexButtonContainer, #sizeConfiguration, #polygonConfiguration, .check
 
 #size {
     transition: margin-bottom 0.5s ease-out;
-    margin-bottom: -190px;
+    margin-bottom: -178px;
 }
 
 .high {
@@ -161,9 +162,8 @@ fieldset, #hexButtonContainer, #sizeConfiguration, #polygonConfiguration, .check
 }
 
 #polygonConfiguration {
-    transform: translate(1px, 16px);
+    transform: translate(1px, -7px);
     margin-top: -20px;
-    margin-bottom: 12px;
 }
 
 #rectCheckbox {
@@ -207,4 +207,8 @@ fieldset, #hexButtonContainer, #sizeConfiguration, #polygonConfiguration, .check
     width: 421px;
     margin-bottom: 5px;
     transform: translateX(61px);
+}
+
+.mainInput {
+    width: 207px;
 }

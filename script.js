@@ -96,7 +96,7 @@ window.onload = function () {
         var speed = 0;
         var visibility = "hidden";
         var settings = document.getElementsByClassName("advancedSettings");
-        document.getElementById("size").style.marginBottom = "-190px";
+        document.getElementById("size").style.marginBottom = "-178px";
         if (settings[0].style.visibility === "hidden") {
             speed = 500;
             visibility = "visible";
@@ -372,18 +372,16 @@ function validateData(type, colours, size, amount, element) {
         if (!size[4] || !size[5] || !size[6] || !size[7] || size[4] < 1 || size[4] > 512 || size[5] < 1
             || size[5] > 512 || size[6] < 1 || size[6] > 512 || size[7] < 1 || size[7] > 512) return false;
     } else if (element === "line") {
-        if (!size[8] || !size[9] || !size[10] || !size[11] || !size[12] || size[8] < 0 || size[8] > 512 || size[9] < 0
-            || size[9] > 512 || size[10] < 0 || size[10] > 512 || size[11] < 0 || size[11] > 512 || size[12] < 1
-            || size[12] > 512) return false;
+        if (!size[8] || !size[9] || !size[10] || !size[11] || size[8] < 0 || size[8] > 512 || size[9] < 0
+            || size[9] > 512 || size[10] < 0 || size[10] > 512 || size[11] < 0 || size[11] > 512) return false;
     } else if (element === "polyline") {
-        if (document.getElementById("pointCollection").value.split(" ") < 2
-            || !size[12] || size[2] < 1 || size[12] > 512) return false;
+        if (document.getElementById("pointCollection").value.split(" ") < 2) return false;
     } else if (element === "polygon") {
         if (document.getElementById("pointCollection").value.split(" ") < 2) return false;
     }
     if (document.getElementById("strokeCheckbox").checked &&
         type !== "points" && type !== "hexColour" && type !== "hexGrey") {
-        if (!size[12] || size[12] < 1 || size[12] > 512) return false;
+        if (!size[12] || size[12] < 1 || size[12] > 1024) return false;
     }
     return true;
 }
@@ -413,24 +411,23 @@ function getType(array) {
 }
 
 /**
- * Get the points and its size
- * @returns {[*,number,number]}
+ * Get the points and builds it up (needs to hold a lot of numbers)
+ * @returns {[*, *, *,number,number]}
  */
 function getPoints() {
     var points = [null, null, document.getElementById("pointCollection").value, 0, 0];
-    points[0] = points[2].split(" ");
-    points[1] = points[2].split(" ");
-    if (points[0][points[0].length - 1] === "") {
-        points[0].pop();
-        points[1].pop();
+    for (var a = 0; a < 2; a++) {
+        points[a] = points[2].split(" ");
+        if (points[a][points[a].length - 1] === "") points[a].pop();
+        for (var b = 0; b < points[a].length; b++) {
+            points[a][b] = parseInt(points[a][b]);
+        }
     }
-    for (var i = 0; i < points[0].length; i++) {
-        if (points[0][i] > points[3]) points[3] = points[0][i];
-        i++;
-    }
-    for (var a = 1; a < points[0].length; a++) {
-        if (points[0][a] > points[4]) points[4] = points[0][a];
-        a++;
+    for (var c = 0; c < 2; c++) {
+        for (var d = c; d < points[0].length; d++) {
+            if (points[0][d] > points[c + 3]) points[c + 3] = points[0][d];
+            ++d;
+        }
     }
     return points;
 }
