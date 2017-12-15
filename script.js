@@ -72,7 +72,6 @@ window.onload = function () {
         }
     };
 
-
     /**
      * On click: gets result data and adds it to the collection
      */
@@ -138,8 +137,7 @@ window.onload = function () {
             }
         }
     }
-}
-;
+};
 
 /**
  * Generates the svg with data, places svg in html
@@ -154,7 +152,7 @@ function generateSVG(colours, size, grey, hex, type) {
     var element = "";
     var points = getPoints();
     var high = prepareHigh(size);
-    var colourArray = prepareColourHexArray();
+    var colourArray = getColourHexArray();
     if (!type[1]) sw = size[12];
     for (var i = 0; i < size[1]; i++) {
         for (var a = 0; a < size[0]; a++) {
@@ -296,18 +294,6 @@ function generateRandomPoint(size) {
 }
 
 /**
- * Prepares the colourArray
- * @returns {Array}
- */
-function prepareColourHexArray() {
-    var colourArray = document.getElementById("hexCollection").value.split(':');
-    if (colourArray[colourArray.length - 1] === "") {
-        colourArray.pop();
-    }
-    return colourArray;
-}
-
-/**
  * prepares the high value for the lines
  * @param size
  * @returns {[*,*]}
@@ -384,6 +370,18 @@ function validateData(type, colours, size, amount, element) {
         if (!size[12] || size[12] < 1 || size[12] > 1024) return false;
     }
     return true;
+}
+
+/**
+ * Prepares the colourArray
+ * @returns {Array}
+ */
+function getColourHexArray() {
+    var colourArray = document.getElementById("hexCollection").value.split(':');
+    if (colourArray[colourArray.length - 1] === "") {
+        colourArray.pop();
+    }
+    return colourArray;
 }
 
 /**
