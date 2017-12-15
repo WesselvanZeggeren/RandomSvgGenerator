@@ -367,10 +367,10 @@ function validateData(type, colours, size, amount, element) {
         if (!size[2] || !size[3] || size[2] < 1 || size[2] > 512 || size[3] < 1 || size[3] > 512) return false;
     } else if (element === "circle") {
         if (!size[4] || !size[5] || !size[6] || size[4] < 1 || size[4] > 512 || size[5] < 1 || size[5] > 512
-            || size[6] < 1 || size[6] > 512) return false;
+            || size[6] < 0 || size[6] > 512) return false;
     } else if (element === "ellipse") {
         if (!size[4] || !size[5] || !size[6] || !size[7] || size[4] < 1 || size[4] > 512 || size[5] < 1
-            || size[5] > 512 || size[6] < 1 || size[6] > 512 || size[7] < 1 || size[7] > 512) return false;
+            || size[5] > 512 || size[6] < 0 || size[6] > 512 || size[7] < 0 || size[7] > 512) return false;
     } else if (element === "line") {
         if (!size[8] || !size[9] || !size[10] || !size[11] || size[8] < 0 || size[8] > 512 || size[9] < 0
             || size[9] > 512 || size[10] < 0 || size[10] > 512 || size[11] < 0 || size[11] > 512) return false;
