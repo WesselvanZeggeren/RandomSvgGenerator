@@ -71,7 +71,7 @@ window.onload = function () {
         console.log("Click");
         var size = getData("rectInput");
         var amount = getData("pointAmount");
-        if (validateSizes(size, "points") && validateAmount(amount)) {
+        if (validateSizes(size, "") && validateAmount(amount)) {
             generatePoint(size, amount[0]);
         }
     };
@@ -92,6 +92,22 @@ window.onload = function () {
         console.log("Click");
         document.getElementById("hexCollection").value = document.getElementById("hexResult").innerHTML;
         document.getElementById("hexResult").innerHTML = "";
+    };
+
+    /**
+     * Copy the base64 of the svg
+     */
+    document.getElementById("copybase64").onclick = function () {
+        getDataInClipboard("svgbase64");
+        alert("You copied the base64 of the svg");
+    };
+
+    /**
+     * Copy the html of the svg
+     */
+    document.getElementById("copyhtml").onclick = function () {
+        getDataInClipboard("svghtml");
+        alert("You copied the html of the svg");
     };
 
     /**
@@ -298,7 +314,7 @@ function generateSVGElement(size, strokeWidth, type, element, high, points) {
         SVG += size[0] * (size[2] + strokeWidth) + " " + size[1] * (size[3] + strokeWidth);
     }
     SVG += '" >' + element + '</svg>';
-    document.getElementById("sgvDump").innerHTML = SVG;
+    placeSVG(SVG);
 }
 
 /**
@@ -385,6 +401,18 @@ function generateRandomColourWithHexArray(colourArray) {
 }
 
 /**
+ * Places the SVG in the html and changes some elements
+ * @param SVG
+ */
+function placeSVG(SVG) {
+    document.getElementById("svg").style.visibility = "visible";
+    document.getElementById("svg").style.marginBottom = "-25px";
+    document.getElementById("svgbase64").innerHTML = btoa(SVG);
+    document.getElementById("svghtml").innerHTML = SVG;
+    document.getElementById("svgDump").innerHTML = SVG;
+}
+
+/**
  * Checks if the colours are filled in correctly
  * @param colours
  * @param type
@@ -420,18 +448,15 @@ function validateAmount(amount) {
  */
 function validateSizes(size, type) {
     console.log("validateSizes");
-    if (type === "points") {
-        if (validateSize(size[0]) || validateSize(size[1])) return false;
-    } else if (type === "rect") {
+    if (validateSize(size[0]) || validateSize(size[1])) return false;
+    if (type === "rect") {
         if (validateSize(size[2]) || validateSize(size[3])) return false;
     } else if (type === "circle") {
         if (validateSize(size[4]) || validateSize(size[5]) || validateSize(size[6])) return false;
     } else if (type === "ellipse") {
-        if (validateSize(size[4]) || validateSize(size[5]) ||
-            validateSize(size[6]) || validateSize(size[7])) return false;
+        if (validateSize(size[4]) || validateSize(size[5]) || validateSize(size[6]) || validateSize(size[7])) return false;
     } else if (type === "line") {
-        if (validateSize(size[8]) || validateSize(size[9]) ||
-            validateSize(size[10]) || validateSize(size[11])) return false;
+        if (validateSize(size[8]) || validateSize(size[9]) || validateSize(size[10]) || validateSize(size[11])) return false;
     } else if (type === "polyline" || type === "polygon") {
         if (document.getElementById("pointCollection").value.split(" ") < 2) return false;
     }
@@ -540,6 +565,19 @@ function getColour(colours, colourArray, colourType) {
     } else {
         return generateRandomColour(colours);
     }
+}
+
+/**
+ * Places the data of an textarea in your clipboard
+ * @param classname
+ */
+function getDataInClipboard(classname) {
+    var temp = document.createElement("INPUT");
+    document.getElementsByTagName("body")[0].appendChild(temp);
+    temp.value = document.getElementById(classname).innerHTML;
+    temp.select();
+    document.execCommand("copy");
+    temp.remove();
 }
 
 /**

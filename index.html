@@ -128,7 +128,19 @@
     </div>
     <br>
     <h3 id="svgH3">THE SVG WILL DISPLAY BELOW:</h3>
+    <div id="svg" style="visibility: hidden; margin-bottom: -100px !important;">
+        <label class="base64">Base 64</label>
+        <label class="Html">Html</label>
+        <br>
+        <div id="copySvgDiv">
+            <textarea class="svgTextarea" id="svgbase64" disabled></textarea>
+            <button id="copybase64">COPY BASE 64</button>
+            <br>
+            <button id="copyhtml">COPY HTML</button>
+        </div>
+        <textarea class="svgTextarea" id="svghtml" disabled></textarea>
+    </div>
 </fieldset>
-<div id="sgvDump"></div>
+<div id="svgDump"></div>
 </body>
 </html>

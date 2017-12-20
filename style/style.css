@@ -35,7 +35,7 @@ h3 {
 }
 
 svg {
-    margin-top: 16px;
+    margin-top: 10px;
     transition: 1s all ease-in;
 }
 
@@ -43,7 +43,7 @@ svg {
     margin-right: 20px;
 }
 
-fieldset, #hexButtonContainer, #sizeConfiguration, #polygonConfiguration, .checkboxDiv {
+fieldset, #hexButtonContainer, #sizeConfiguration, #polygonConfiguration, .checkboxDiv, #copySvgDiv {
     display: inline-block;
 }
 
@@ -119,7 +119,7 @@ fieldset, #hexButtonContainer, #sizeConfiguration, #polygonConfiguration, .check
     width: 100px;
 }
 
-.greyInput, #hexCollection {
+.greyInput, #hexCollection, .svgTextarea {
     width: 421px;
 }
 
@@ -133,12 +133,16 @@ fieldset, #hexButtonContainer, #sizeConfiguration, #polygonConfiguration, .check
 }
 
 .width {
-    margin-right: 565px;
+    margin-right: 570px;
 }
 
 #size {
     transition: margin-bottom 0.5s ease-out;
     margin-bottom: -175px;
+}
+
+.base64 {
+    margin-right: 540px;
 }
 
 .high {
@@ -213,4 +217,29 @@ fieldset, #hexButtonContainer, #sizeConfiguration, #polygonConfiguration, .check
 
 .mainInput {
     width: 207px;
+}
+
+.svgTextarea {
+    height: 63px;
+}
+
+#svgbase64 {
+    margin-right: 21px;
+}
+
+#svghtml{
+    transform: translateY(-21px);
+}
+
+#copybase64, #copyhtml{
+    width: 104px;
+    margin-right: 12px;
+}
+
+#copybase64{
+    transform: translateY(-42px);
+}
+
+#copyhtml{
+    transform: translate(221px, -34px);
 }
