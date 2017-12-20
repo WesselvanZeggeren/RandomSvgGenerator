@@ -113,7 +113,7 @@ window.onload = function () {
         if (settings[0].style.visibility === "hidden") {
             speed = 500;
             visibility = "visible";
-            document.getElementById("size").style.marginBottom = "0";
+            document.getElementById("size").style.marginBottom = "3px";
         }
         setTimeout(function () {
             for (var i = 0; i < settings.length; i++) {

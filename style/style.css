@@ -39,7 +39,11 @@ svg {
     transition: 1s all ease-in;
 }
 
-#submitColour, #submitGrey, #blueLeft, #greyLeft, #hexCollection, #y, #ry, #y2, #svgy, .strokeCheckboxDiv {
+#blueLeft, #greyLeft, #hexCollection, #y, #ry, #y2, #svgy, .strokeCheckboxDiv {
+    margin-right: 19px;
+}
+
+#submitColour, #submitGrey {
     margin-right: 20px;
 }
 
@@ -224,22 +228,22 @@ fieldset, #hexButtonContainer, #sizeConfiguration, #polygonConfiguration, .check
 }
 
 #svgbase64 {
-    margin-right: 21px;
+    margin-right: 20px;
 }
 
-#svghtml{
+#svghtml {
     transform: translateY(-21px);
 }
 
-#copybase64, #copyhtml{
+#copybase64, #copyhtml {
     width: 104px;
     margin-right: 12px;
 }
 
-#copybase64{
+#copybase64 {
     transform: translateY(-42px);
 }
 
-#copyhtml{
+#copyhtml {
     transform: translate(221px, -34px);
 }
