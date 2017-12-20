@@ -6,7 +6,6 @@ window.onload = function () {
      * On click: get data, check data, generate colour svg
      */
     document.getElementById("submitColour").onclick = function () {
-        console.log("Click");
         var colours = getData("colourInput");
         var size = getData("sizeInput");
         var type = getType(getData("checkbox"));
@@ -19,7 +18,6 @@ window.onload = function () {
      * On click: get data, check data, generate grey svg
      */
     document.getElementById("submitGrey").onclick = function () {
-        console.log("Click");
         var colours = getData("greyInput");
         var size = getData("sizeInput");
         var type = getType(getData("checkbox"));
@@ -32,7 +30,6 @@ window.onload = function () {
      * On click: get data, check data, generate svg with svg
      */
     document.getElementById("submitHex").onclick = function () {
-        console.log("Click");
         var size = getData("sizeInput");
         var type = getType(getData("checkbox"));
         if (validateSizes(size, type)) {
@@ -44,7 +41,6 @@ window.onload = function () {
      * On click: get data, check data, creates hex colour codes with data
      */
     document.getElementById("getHexColour").onclick = function () {
-        console.log("Click");
         var colours = getData("colourInput");
         var amount = getData("hexAmount");
         if (validateColour(colours, "Colour") && validateAmount(amount)) {
@@ -56,7 +52,6 @@ window.onload = function () {
      * On click: get data, check data, creates hex grey codes with data
      */
     document.getElementById("getHexGrey").onclick = function () {
-        console.log("Click");
         var colours = getData("GreyInput");
         var amount = getData("hexAmount");
         if (validateColour(colours, "grey") && validateAmount(amount)) {
@@ -68,7 +63,6 @@ window.onload = function () {
      * On click: get data, check data, creates points with given width of rect
      */
     document.getElementById("getPoint").onclick = function () {
-        console.log("Click");
         var size = getData("rectInput");
         var amount = getData("pointAmount");
         if (validateSizes(size, "") && validateAmount(amount)) {
@@ -80,7 +74,6 @@ window.onload = function () {
      * On click: gets result data and adds it to the collection
      */
     document.getElementById("addToCollection").onclick = function () {
-        console.log("Click");
         document.getElementById("hexCollection").value += document.getElementById("hexResult").innerHTML;
         document.getElementById("hexResult").innerHTML = "";
     };
@@ -89,7 +82,6 @@ window.onload = function () {
      * On click: gets result data and replaces the collection with it
      */
     document.getElementById("replaceCollection").onclick = function () {
-        console.log("Click");
         document.getElementById("hexCollection").value = document.getElementById("hexResult").innerHTML;
         document.getElementById("hexResult").innerHTML = "";
     };
@@ -114,7 +106,6 @@ window.onload = function () {
      * On click: hides and shows the advanced settings
      */
     document.getElementById("openAdvancedSettings").onclick = function () {
-        console.log("Click");
         var speed = 0;
         var visibility = "hidden";
         var settings = document.getElementsByClassName("advancedSettings");
@@ -139,7 +130,6 @@ window.onload = function () {
     var fill = false;
     for (var i = 0; i < elements.length; i++) {
         elements[i].onclick = function (e) {
-            console.log("Click");
             if (e.target.id !== "fillCheckbox" && e.target.id !== "strokeCheckbox") {
                 for (var a = 2; a < (elements.length); a++) {
                     elements[a].checked = false;
@@ -171,7 +161,6 @@ window.onload = function () {
  * @param colourType
  */
 function generateSVG(colours, size, type, colourType) {
-    console.log("generateSVG");
     var element = "";
     var strokeWidth = 0;
     var high = getHigh(size);
@@ -202,7 +191,6 @@ function generateSVG(colours, size, type, colourType) {
         }
         points = preparePoints(points, "y");
     }
-    console.log(element);
     generateSVGElement(size, strokeWidth, type, element, high, points);
     if (document.getElementById("backgroundCheckbox").checked) {
         document.getElementsByTagName("svg")[0].style.backgroundColor = getColour(colours, colourArray, colourType);
@@ -218,7 +206,6 @@ function generateSVG(colours, size, type, colourType) {
  * @returns {string}
  */
 function generateRect(size, strokeWidth, y, x) {
-    console.log("rect");
     var element = "<rect ";
     element += 'x="' + ((x * (size[2] + strokeWidth)) + (strokeWidth / 2)) + '" ';
     element += 'y="' + ((y * (size[3] + strokeWidth)) + (strokeWidth / 2)) + '" ';
@@ -237,7 +224,6 @@ function generateRect(size, strokeWidth, y, x) {
  * @returns {string}
  */
 function generateCircle(size, strokeWidth, y, x) {
-    console.log("Circle");
     var element = "<circle ";
     element += 'cx="' + ((x * size[4]) + (size[4] / 2) + (x * strokeWidth) + (strokeWidth / 2)) + '" ';
     element += 'cy="' + ((y * size[5]) + (size[5] / 2) + (y * strokeWidth) + (strokeWidth / 2)) + '" ';
@@ -254,7 +240,6 @@ function generateCircle(size, strokeWidth, y, x) {
  * @returns {string}
  */
 function generateEllipse(size, strokeWidth, y, x) {
-    console.log("Ellipse");
     var element = "<ellipse ";
     element += 'cx="' + ((x * size[4]) + (size[4] / 2) + (x * strokeWidth) + (strokeWidth / 2)) + '" ';
     element += 'cy="' + ((y * size[5]) + (size[5] / 2) + (y * strokeWidth) + (strokeWidth / 2)) + '" ';
@@ -271,7 +256,6 @@ function generateEllipse(size, strokeWidth, y, x) {
  * @returns {string}
  */
 function generateLine(size, high, y, x) {
-    console.log("Line");
     var element = "<line ";
     element += 'x1="' + ((x * high[0]) + size[8]) + '" x2="' + ((x * high[0]) + size[10]) + '" ';
     element += 'y1="' + ((y * high[1]) + size[9]) + '" y2="' + ((y * high[1]) + size[11]) + '" ';
@@ -285,7 +269,6 @@ function generateLine(size, high, y, x) {
  * @returns {string}
  */
 function generatePolylinePolygon(points, type) {
-    console.log("polyline / Polygon");
     var element = "<" + type + " ";
     element += 'points="' + points + '" ';
     return element;
@@ -302,7 +285,6 @@ function generatePolylinePolygon(points, type) {
  * @returns {string}
  */
 function generateSVGElement(size, strokeWidth, type, element, high, points) {
-    console.log("Generate SVG Element");
     var SVG = '<svg width="100%" heigth="100%" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ';
     if (type === "circle" || type === "ellipse") {
         SVG += size[0] * (size[4] + strokeWidth) + " " + size[1] * (size[5] + strokeWidth);
@@ -324,7 +306,6 @@ function generateSVGElement(size, strokeWidth, type, element, high, points) {
  * @param grey
  */
 function generateHex(colours, amount, grey) {
-    console.log("generateHex");
     var hexCollection = "";
     for (var i = 0; i < amount; i++) {
         if (!grey) {
@@ -342,7 +323,6 @@ function generateHex(colours, amount, grey) {
  * @param amount
  */
 function generatePoint(size, amount) {
-    console.log("generatePoint");
     var points = "";
     for (var i = 0; i < amount; i++) {
         for (var a = 0; a < 2; a++) {
@@ -359,7 +339,6 @@ function generatePoint(size, amount) {
  * @returns {string}
  */
 function generateRandomColour(colours) {
-    console.log("generateColour");
     var randomColoursArray = [];
     for (var i = 0; i < 3; i++) {
         var minimal = colours[i] - colours[i + 3];
@@ -379,7 +358,6 @@ function generateRandomColour(colours) {
  * @returns {string}
  */
 function generateRandomGrey(colours) {
-    console.log("generateGrey");
     var minimal = colours[0] - colours[1];
     var oneColor = Math.floor((Math.random() * minimal) + colours[1]);
     var oneHexColor = oneColor.toString(16);
@@ -395,7 +373,6 @@ function generateRandomGrey(colours) {
  * @returns {*}
  */
 function generateRandomColourWithHexArray(colourArray) {
-    console.log("generateHexArray");
     var number = Math.floor(Math.random() * colourArray.length);
     return colourArray[number];
 }
@@ -419,7 +396,6 @@ function placeSVG(SVG) {
  * @return {boolean}
  */
 function validateColour(colours, type) {
-    console.log("validateColor");
     if (type === "colour") {
         if (colours.length !== 6 || colours[0] < colours[3] || colours[1] < colours[4]
             || colours[2] < colours[5]) return false;
@@ -435,7 +411,6 @@ function validateColour(colours, type) {
  * @returns {boolean}
  */
 function validateAmount(amount) {
-    console.log("validateAmount");
     if (amount.length !== 1 || amount[0] < 1 || amount[0] > 128) return false;
     return true;
 }
@@ -447,7 +422,6 @@ function validateAmount(amount) {
  * @returns {boolean}
  */
 function validateSizes(size, type) {
-    console.log("validateSizes");
     if (validateSize(size[0]) || validateSize(size[1])) return false;
     if (type === "rect") {
         if (validateSize(size[2]) || validateSize(size[3])) return false;
@@ -470,7 +444,6 @@ function validateSizes(size, type) {
  * @returns {boolean}
  */
 function validateSize(size) {
-    console.log("validateSize");
     if (!size || size < 1 || size > 512) return true;
     return false;
 }
@@ -481,7 +454,6 @@ function validateSize(size) {
  * @returns {[*,*]}
  */
 function getHigh(size) {
-    console.log("getHigh");
     var high = [size[8], size[9]];
     if (high[0] < size[10]) high[0] = size[10];
     if (high[1] < size[11]) high[1] = size[11];
@@ -493,7 +465,6 @@ function getHigh(size) {
  * @returns {Array}
  */
 function getColourHexArray() {
-    console.log("golourArray");
     var colourArray = document.getElementById("hexCollection").value.split(':');
     if (colourArray[colourArray.length - 1] === "") {
         colourArray.pop();
@@ -507,7 +478,6 @@ function getColourHexArray() {
  * @returns {*}
  */
 function getType(checkbox) {
-    console.log("getType");
     if (checkbox.length === 8) {
         if (checkbox[2]) {
             return "rect";
@@ -531,7 +501,6 @@ function getType(checkbox) {
  * @returns {[*, *, *,number,number]}
  */
 function getPoints() {
-    console.log("getPoints");
     var points = [null, null, document.getElementById("pointCollection").value, 0, 0];
     for (var a = 0; a < 2; a++) {
         points[a] = points[2].split(" ");
@@ -557,7 +526,6 @@ function getPoints() {
  * @returns {string}
  */
 function getColour(colours, colourArray, colourType) {
-    console.log("getColour");
     if (colourType === "grey") {
         return generateRandomGrey(colours);
     } else if (colourType === "hex") {
@@ -586,7 +554,6 @@ function getDataInClipboard(classname) {
  * @returns {Array}
  */
 function getData(classname) {
-    console.log("getData");
     var elements = document.getElementsByClassName(classname);
     var data = [];
     for (var i = 0; i < elements.length; i++) {
@@ -607,7 +574,6 @@ function getData(classname) {
  * @returns {*}
  */
 function preparePoints(points, xy) {
-    console.log("preparePoints");
     points[2] = "";
     for (var i = 0; i < points[0].length; i++) {
         if (xy === "x") {
