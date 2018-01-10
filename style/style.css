@@ -35,7 +35,7 @@ h3 {
 }
 
 svg {
-    margin-top: 10px;
+    margin-top: 7px;
     transition: 1s all ease-in;
 }
 
@@ -219,7 +219,7 @@ fieldset, #hexButtonContainer, #sizeConfiguration, #polygonConfiguration, .check
     transform: translateX(61px);
 }
 
-.mainInput {
+.mainInput, #showbase64, #copybase64, #showhtml, #copyhtml {
     width: 207px;
 }
 
@@ -235,15 +235,6 @@ fieldset, #hexButtonContainer, #sizeConfiguration, #polygonConfiguration, .check
     transform: translateY(-21px);
 }
 
-#copybase64, #copyhtml {
-    width: 104px;
-    margin-right: 12px;
-}
-
 #copybase64 {
-    transform: translateY(-42px);
-}
-
-#copyhtml {
-    transform: translate(221px, -34px);
+    margin-right: 150px;
 }

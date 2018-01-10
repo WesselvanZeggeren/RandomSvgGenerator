@@ -87,18 +87,32 @@ window.onload = function () {
     };
 
     /**
+     * Show the base64 of the svg
+     */
+    document.getElementById("showbase64").onclick = function () {
+        alert("The base 64 data: " + btoa(document.getElementsByTagName("svg")[0].innerHTML));
+    };
+
+    /**
      * Copy the base64 of the svg
      */
     document.getElementById("copybase64").onclick = function () {
-        getDataInClipboard("svgbase64");
-        alert("You copied the base64 of the svg");
+        getDataInClipboard("base64");
+        alert("You copied the base 64 of the svg");
+    };
+
+    /**
+     * Show the html of the svg
+     */
+    document.getElementById("showhtml").onclick = function () {
+        alert("The html data: " + document.getElementsByTagName("svg")[0].innerHTML);
     };
 
     /**
      * Copy the html of the svg
      */
     document.getElementById("copyhtml").onclick = function () {
-        getDataInClipboard("svghtml");
+        getDataInClipboard("html");
         alert("You copied the html of the svg");
     };
 
@@ -383,9 +397,7 @@ function generateRandomColourWithHexArray(colourArray) {
  */
 function placeSVG(SVG) {
     document.getElementById("svg").style.visibility = "visible";
-    document.getElementById("svg").style.marginBottom = "-25px";
-    document.getElementById("svgbase64").innerHTML = btoa(SVG);
-    document.getElementById("svghtml").innerHTML = SVG;
+    document.getElementById("svg").style.marginBottom = "-7px";
     document.getElementById("svgDump").innerHTML = SVG;
 }
 
@@ -536,13 +548,17 @@ function getColour(colours, colourArray, colourType) {
 }
 
 /**
- * Places the data of an textarea in your clipboard
- * @param classname
+ * Places the svg in your clipboard
+ * @param type
  */
-function getDataInClipboard(classname) {
+function getDataInClipboard(type) {
     var temp = document.createElement("INPUT");
     document.getElementsByTagName("body")[0].appendChild(temp);
-    temp.value = document.getElementById(classname).innerHTML;
+    if (type === "base64") {
+        temp.value = btoa(document.getElementsByTagName("svg")[0].innerHTML);
+    } else if (type === "html") {
+        temp.value = document.getElementsByTagName("svg")[0].innerHTML;
+    }
     temp.select();
     document.execCommand("copy");
     temp.remove();
